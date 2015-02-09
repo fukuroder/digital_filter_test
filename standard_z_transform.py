@@ -12,14 +12,14 @@ def main():
 
 	T = 1.0/samplerate
 	omega_c = 2.0*math.pi*cutoff
-	a0 = omega_c*T
-	b1 = math.exp(-omega_c*T)
+	b0 = omega_c*T
+	a1 = math.exp(-omega_c*T)
 
 	# filtering
 	y1 = 0.0
 	write_frames = numpy.zeros(read_frames.shape, 'int16')
 	for n,x0 in enumerate(read_frames):
-		y0 = a0*x0 + b1*y1
+		y0 = b0*x0 + a1*y1
 		y1 = y0
 		write_frames[n] = to_int16(y0)
 

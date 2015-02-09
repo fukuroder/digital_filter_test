@@ -12,16 +12,16 @@ def main():
 
 	T = 1.0/samplerate
 	omega_c = 2.0*math.pi*cutoff
-	a0 = math.tan( omega_c*T/2.0 )/(1.0+math.tan( omega_c*T/2.0 ))
-	a1 = math.tan( omega_c*T/2.0 )/(1.0+math.tan( omega_c*T/2.0 ))
-	b1 = (1.0-math.tan( omega_c*T/2.0 ))/(1.0+math.tan( omega_c*T/2.0 ))
+	b0 = math.tan( omega_c*T/2.0 )/(1.0+math.tan( omega_c*T/2.0 ))
+	b1 = math.tan( omega_c*T/2.0 )/(1.0+math.tan( omega_c*T/2.0 ))
+	a1 = (1.0-math.tan( omega_c*T/2.0 ))/(1.0+math.tan( omega_c*T/2.0 ))
 
 	# filtering
 	x1 = 0.0
 	y1 = 0.0
 	write_frames = numpy.zeros(read_frames.shape, 'int16')
 	for n,x0 in enumerate(read_frames):
-		y0 = a0*x0 + a1*x1 + b1*y1
+		y0 = b0*x0 + b1*x1 + a1*y1
 		x1 = x0
 		y1 = y0
 		write_frames[n] = to_int16(y0)
