@@ -12,9 +12,9 @@ def main():
 
 	T = 1.0/samplerate
 	omega_c = 2.0*math.pi*cutoff
-	b0 = math.tan( omega_c*T/2.0 )/(1.0+math.tan( omega_c*T/2.0 ))
-	b1 = math.tan( omega_c*T/2.0 )/(1.0+math.tan( omega_c*T/2.0 ))
-	a1 = (1.0-math.tan( omega_c*T/2.0 ))/(1.0+math.tan( omega_c*T/2.0 ))
+	b0 = math.tan(omega_c*T/2.0)/(1.0+math.tan(omega_c*T/2.0))
+	b1 = math.tan(omega_c*T/2.0)/(1.0+math.tan(omega_c*T/2.0))
+	a1 = (1.0-math.tan(omega_c*T/2.0))/(1.0+math.tan(omega_c*T/2.0))
 
 	# filtering
 	x1 = 0.0
