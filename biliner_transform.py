@@ -16,7 +16,7 @@ def main():
 	b1 = math.tan(omega_c*T/2.0)/(1.0+math.tan(omega_c*T/2.0))
 	a1 = (1.0-math.tan(omega_c*T/2.0))/(1.0+math.tan(omega_c*T/2.0))
 
-	# filtering
+	# filter
 	x1 = 0.0
 	y1 = 0.0
 	write_frames = numpy.zeros(read_frames.shape, 'int16')
