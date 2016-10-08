@@ -17,24 +17,17 @@ def main():
 	a1 = (1.0-math.tan(omega_c*T/2.0))/(1.0+math.tan(omega_c*T/2.0))
 
 	# filter
-	x1 = 0.0
-	y1 = 0.0
-	write_frames = numpy.zeros(read_frames.shape, 'int16')
-	for n,x0 in enumerate(read_frames):
+	x1, y1 = 0.0, 0.0
+	write_frames = []
+	for x0 in read_frames:
 		y0 = b0*x0 + b1*x1 + a1*y1
-		x1 = x0
-		y1 = y0
-		write_frames[n] = to_int16(y0)
+		write_frames.append(y0)
+		x1, y1 = x0, y0
 
 	# write
-	scipy.io.wavfile.write('biliner_transform.wav', samplerate, write_frames)
-
-def to_int16(x):
-	if x < -2**15:
-		x = -2**15
-	elif x > 2**15-1:
-		x = 2**15-1
-	return numpy.int16(x)
+	scipy.io.wavfile.write('biliner_transform.wav',
+	                       samplerate,
+						   numpy.clip(write_frames,-2**15, 2**15-1).astype("int16"))
 
 if __name__ == '__main__':
 	main()
