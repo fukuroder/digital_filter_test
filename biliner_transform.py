@@ -27,7 +27,7 @@ def main():
 	# write
 	scipy.io.wavfile.write('biliner_transform.wav',
 				samplerate,
-				numpy.clip(write_frames,-2**15, 2**15-1).astype("int16"))
+				numpy.clip(write_frames,-2**15, 2**15-1).astype('int16'))
 
 if __name__ == '__main__':
 	main()
